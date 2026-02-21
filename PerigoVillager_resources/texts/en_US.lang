@@ -1,0 +1,15 @@
+entity.perigovillager:perigo.name=Perigo
+
+##Professions
+profession.perigo.agricultor=Agricultor
+profession.perigo.pedreiro=Pedreiro
+profession.perigo.ferreiro=Ferreiro
+profession.perigo.armeiro=Armeiro
+
+##Trades
+trade.perigo.cheap_pickaxe=Picareta de Netherite!
+trade.perigo.cheap_sword=Espada de Netherite!
+trade.perigo.cheap_emerald=Esmeralda a preço de lixo!
+trade.perigo.cheap_totem=Totem da Eternidade!
+trade.perigo.cheap_golden_apple=Maçã Dourada Encantada!
+trade.perigo.cheap_armor=Armadura de Netherite por quase nada!

@@ -1,0 +1,24 @@
+{
+    "format_version": 1,
+    "header": {
+        "name": "PerigoVillager - Resource Pack",
+        "description": "Texturas, modelos e animações do Perigo",
+        "uuid": "9a8b7c6d-5e4f-3d2c-1b0a-f9e8d7c6b5a4",
+        "min_engine_version": [1, 12, 0],
+        "version": [1, 0, 0]
+    },
+    "modules": [
+        {
+            "description": "Recursos visuais do Perigo",
+            "type": "resources",
+            "uuid": "6f5e4d3c-2b1a-0f9e-8d7c-6b5a4f3e2d1c",
+            "version": [1, 0, 0]
+        }
+    ],
+    "dependencies": [
+        {
+            "uuid": "8f7c5e2a-9b4d-4e1f-8c3d-2a1b9e4f6d3c",
+            "version": [1, 0, 0]
+        }
+    ]
+}

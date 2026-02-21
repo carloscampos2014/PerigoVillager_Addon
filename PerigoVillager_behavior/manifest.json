@@ -1,0 +1,24 @@
+{
+    "format_version": 1,
+    "header": {
+        "name": "PerigoVillager - Behavior Pack",
+        "description": "Addon que traz o Perigo para Minecraft Bedrock com villagers especiais com trocas incríveis.",
+        "uuid": "8f7c5e2a-9b4d-4e1f-8c3d-2a1b9e4f6d3c",
+        "min_engine_version": [1, 12, 0],
+        "version": [1, 0, 0]
+    },
+    "modules": [
+        {
+            "description": "Comportamentos e entidades do Perigo",
+            "type": "data",
+            "uuid": "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+            "version": [1, 0, 0]
+        }
+    ],
+    "dependencies": [
+        {
+            "uuid": "9a8b7c6d-5e4f-3d2c-1b0a-f9e8d7c6b5a4",
+            "version": [1, 0, 0]
+        }
+    ]
+}

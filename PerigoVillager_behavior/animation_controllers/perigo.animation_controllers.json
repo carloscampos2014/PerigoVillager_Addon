@@ -1,0 +1,35 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.perigo.idle": {
+            "initial_state": "default",
+            "states": {
+                "default": {
+                    "animations": ["idle"]
+                }
+            }
+        },
+        "controller.animation.perigo.move": {
+            "initial_state": "standing",
+            "states": {
+                "standing": {
+                    "blend_transition": 0.2,
+                    "transitions": [
+                        {
+                            "walking": "query.is_moving"
+                        }
+                    ]
+                },
+                "walking": {
+                    "blend_transition": 0.2,
+                    "transitions": [
+                        {
+                            "standing": "!query.is_moving"
+                        }
+                    ],
+                    "animations": ["walk"]
+                }
+            }
+        }
+    }
+}
