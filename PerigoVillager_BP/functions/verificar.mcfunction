@@ -1,0 +1,3 @@
+execute as @a at @a anchored eyes positioned ^ ^ ^3 if block ~ ~ ~ carved_pumpkin if block ~ ~-1 ~ dirt run summon perigo:villager ~ ~-1 ~
+execute as @a at @a anchored eyes positioned ^ ^ ^3 if block ~ ~ ~ carved_pumpkin if block ~ ~-1 ~ dirt run say §eO Perigo esta na area! Cuidado!
+execute as @a at @a anchored eyes positioned ^ ^ ^3 if block ~ ~ ~ carved_pumpkin if block ~ ~-1 ~ dirt run fill ~ ~ ~ ~ ~-1 ~ air

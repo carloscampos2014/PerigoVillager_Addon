@@ -1,3 +1,0 @@
-execute as @a at @a anchored eyes positioned ^ ^ ^3 if block ~ ~ ~ carved_pumpkin if block ~ ~-1 ~ dirt run summon perigo:vagabundo ~ ~-1 ~
-execute as @a at @a anchored eyes positioned ^ ^ ^3 if block ~ ~ ~ carved_pumpkin if block ~ ~-1 ~ dirt run say §eO Vagabundo apareceu! Cuidado!
-execute as @a at @a anchored eyes positioned ^ ^ ^3 if block ~ ~ ~ carved_pumpkin if block ~ ~-1 ~ dirt run fill ~ ~ ~ ~ ~-1 ~ air

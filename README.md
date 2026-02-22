@@ -30,4 +30,4 @@ As trocas são extremamente baratas porque os itens... bem, você sabe:
 3. Ative os pacotes nos experimentos do seu mundo.
 
 ---
-*Assinado: Mestre de Add-ons.*
+

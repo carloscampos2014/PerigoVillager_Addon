@@ -2,7 +2,7 @@
 	"format_version": "1.10.0",
 	"minecraft:client_entity": {
 		"description": {
-			"identifier": "perigo:vagabundo",
+			"identifier": "perigo:villager",
 			"materials": {
 				"default": "entity_alphatest"
 			},
@@ -11,6 +11,15 @@
 			},
 			"geometry": {
 				"default": "geometry.perigo"
+			},
+			"scripts": {
+				"scale": "0.9375"
+			},
+			"animations": {
+				"general": "animation.villager.general",
+				"look_at_target": "animation.common.look_at_target",
+				"move": "animation.villager.move",
+				"baby_transform": "animation.villager.baby_transform"
 			},
 			"render_controllers": [
 				"controller.render.default"
