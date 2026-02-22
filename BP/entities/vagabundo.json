@@ -1,0 +1,20 @@
+{
+	"format_version": "1.16.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "perigo:vagabundo",
+			"is_spawnable": true,
+			"is_summonable": true
+		},
+		"components": {
+			"minecraft:physics": {},
+			"minecraft:health": {
+				"value": 20,
+				"max": 20
+			},
+			"minecraft:movement": {
+				"value": 0.25
+			}
+		}
+	}
+}

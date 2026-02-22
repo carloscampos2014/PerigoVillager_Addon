@@ -1,0 +1,44 @@
+{
+	"type": "minecraftBedrock",
+	"name": "PerigoVillagerAddon",
+	"namespace": "perigo",
+	"authors": [
+		"Campo, Carlos"
+	],
+	"targetVersion": "1.26.0",
+	"description": "Addon que traz o Perigo para Minecraft Bedrock com villagers especiais com trocas incríveis.",
+	"experimentalGameplay": {
+		"upcomingCreatorFeatures": false,
+		"experimentalCreatorCameraFeatures": false,
+		"enableGameTestFramework": false,
+		"renderDragonFeatures": false,
+		"educationEdition": false
+	},
+	"bdsProject": true,
+	"packs": {
+		"behaviorPack": "./BP",
+		"resourcePack": "./RP"
+	},
+	"worlds": [
+		"./worlds/*"
+	],
+	"compiler": {
+		"plugins": [
+			"generatorScripts",
+			"typeScript",
+			"entityIdentifierAlias",
+			"customEntityComponents",
+			"customItemComponents",
+			"customBlockComponents",
+			"customCommands",
+			"moLang",
+			"formatVersionCorrection",
+			[
+				"simpleRewrite",
+				{
+					"packName": "PerigoVillagerAddon"
+				}
+			]
+		]
+	}
+}

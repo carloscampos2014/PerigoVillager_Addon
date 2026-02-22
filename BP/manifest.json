@@ -1,0 +1,52 @@
+{
+	"format_version": 2,
+	"metadata": {
+		"authors": [
+			"Campo, Carlos"
+		],
+		"generated_with": {
+			"bridge": [
+				"2.7.54"
+			],
+			"dash": [
+				"0.11.7"
+			]
+		}
+	},
+	"header": {
+		"name": "PerigoVillagerAddon",
+		"description": "Addon que traz o Perigo para Minecraft Bedrock com villagers especiais com trocas incríveis.",
+		"min_engine_version": [
+			1,
+			26,
+			0
+		],
+		"uuid": "5690f808-8509-4efd-95c8-2b3c64ff73fb",
+		"version": [
+			1,
+			0,
+			0
+		]
+	},
+	"modules": [
+		{
+			"type": "data",
+			"uuid": "bd3ef83d-eb9a-4cc8-b873-7d0e45b19d40",
+			"version": [
+				1,
+				0,
+				0
+			]
+		}
+	],
+	"dependencies": [
+		{
+			"uuid": "57d44b25-6291-4c31-8630-56a03dce96d3",
+			"version": [
+				1,
+				0,
+				0
+			]
+		}
+	]
+}
