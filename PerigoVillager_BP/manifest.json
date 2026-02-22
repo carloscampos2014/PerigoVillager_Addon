@@ -14,8 +14,8 @@
 		}
 	},
 	"header": {
-		"name": "PerigoVillagerAddon",
-		"description": "Addon que traz o Perigo para Minecraft Bedrock com villagers especiais com trocas incríveis.",
+		"name": "Perigo Villager Addon (Behavior Pack)",
+		"description": "Pacote de comportamento para o Perigo Villager Addon, introduzindo villagers personalizados com trocas únicas e interações especiais relacionadas ao Perigo.",
 		"min_engine_version": [
 			1,
 			26,
