@@ -1,4 +1,4 @@
-# 📦 PerigoVillager Addon
+# 📦 Perigo Villager Addon
 
 "Quer comprar um relógio? Tenho um que marca as horas antes delas acontecerem."
 
@@ -20,15 +20,14 @@ As trocas são extremamente baratas porque os itens... bem, você sabe:
 * **Trigo** ➔ Packs de Esmeralda ou Totens da Eternidade.
 * **Maçã** ➔ Maçãs Douradas Encantadas.
 
-## 📂 Estrutura do Repositório
-* `PerigoVillager_BP/`: Comportamentos, trocas e receitas.
-* `PerigoVillager_RP/`: (Opcional) Texturas e modelos.
+## 📂 Estrutura do Projeto
+* `BP/`: Behavior Pack - Comportamentos, trocas e receitas.
+* `RP/`: Resource Pack - Texturas e modelos.
 
-## 🚀 Instalação Manual
-1. Baixe o repositório.
-2. Mova a pasta `PerigoVillager_BP` para:
-`Android/data/com.mojang.minecraftpe/files/games/com.mojang/development_behavior_packs/`
-3. Ative o pacote nos experimentos do seu mundo.
+## 🚀 Instalação
+1. Baixe ou clone este repositório.
+2. Copie as pastas `BP` e `RP` para a pasta de development packs do seu Minecraft.
+3. Ative os pacotes nos experimentos do seu mundo.
 
 ---
 *Assinado: Mestre de Add-ons.*
