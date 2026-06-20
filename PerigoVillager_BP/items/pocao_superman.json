@@ -1,0 +1,40 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:item": {
+    "description": {
+      "identifier": "calca14:pocao_superman",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": "potion_bottle_drinkable",
+      "minecraft:max_stack_size": 64,
+      "minecraft:use_modifiers": {
+        "use_duration": 1.6
+      },
+      "minecraft:consumable": {
+        "animation": "drink",
+        "consume_sound": "drink",
+        "on_consume": {
+          "event": "calca14:aplicar_efeitos"
+        }
+      }
+    },
+    "events": {
+      "calca14:aplicar_efeitos": {
+        "add_mob_effect": [
+          { "effect": "resistance", "target": "self", "duration": 7200, "amplifier": 255 },
+          { "effect": "fire_resistance", "target": "self", "duration": 7200, "amplifier": 255 },
+          { "effect": "regeneration", "target": "self", "duration": 7200, "amplifier": 255 },
+          { "effect": "absorption", "target": "self", "duration": 7200, "amplifier": 255 },
+          { "effect": "water_breathing", "target": "self", "duration": 7200, "amplifier": 255 },
+          { "effect": "strength", "target": "self", "duration": 7200, "amplifier": 255 },
+          { "effect": "haste", "target": "self", "duration": 7200, "amplifier": 255 },
+          { "effect": "speed", "target": "self", "duration": 7200, "amplifier": 15 },
+          { "effect": "jump_boost", "target": "self", "duration": 7200, "amplifier": 10 }
+        ]
+      }
+    }
+  }
+}

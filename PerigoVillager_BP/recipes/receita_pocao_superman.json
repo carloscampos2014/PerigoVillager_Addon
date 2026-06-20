@@ -1,0 +1,20 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "calca14:receita_pocao_superman"
+    },
+    "tags": [ "crafting_table" ],
+    "pattern": [
+      " T ",
+      " O ",
+      " A "
+    ],
+    "key": {
+      "T": { "item": "minecraft:wheat" },
+      "O": { "item": "minecraft:spider_eye" },
+      "A": { "item": "minecraft:potion" }
+    },
+    "result": { "item": "calca14:pocao_superman" }
+  }
+}

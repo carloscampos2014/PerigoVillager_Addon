@@ -1,0 +1,12 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "calca14:aoe_trail",
+      "materials": { "default": "arrow" },
+      "textures": { "default": "textures/items/empty" },
+      "geometry": { "default": "geometry.arrow" },
+      "render_controllers": [ "controller.render.arrow" ]
+    }
+  }
+}

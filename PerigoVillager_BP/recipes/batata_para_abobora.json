@@ -1,0 +1,16 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "custom:potato_to_pumpkin"
+    },
+    "tags": ["crafting_table"],
+    "ingredients": [
+      { "item": "minecraft:potato", "count": 2 }
+    ],
+    "result": {
+      "item": "minecraft:pumpkin",
+      "count": 1
+    }
+  }
+}

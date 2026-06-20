@@ -1,0 +1,68 @@
+{
+  "format_version": "1.21.10",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "calca14:fire_arrow",
+      "is_spawnable": false,
+      "is_summonable": true
+    },
+    "components": {
+      "minecraft:collision_box": {
+        "width": 1.0,
+        "height": 1.0
+      },
+      "minecraft:physics": {
+        "has_gravity": true,
+        "has_collision": true
+      },
+      "minecraft:projectile": {
+        "on_hit": {
+          "impact_damage": {
+            "damage": 350,
+            "knockback": true,
+            "destroy_on_hit": true
+          },
+          "ignite": true,
+          "catch_fire": true,
+          "remove_on_hit": {}
+        },
+        "gravity": 0.03,
+        "power": 30.0,
+        "uncertainty_base": 0.0,
+        "uncertainty_multiplier": 0.0,
+        "anchor": 1,
+        "offset": [
+          0,
+          -0.1,
+          0
+        ],
+        "reflect_on_hit": false,
+        "stop_on_hit": true,
+        "is_dangerous": true,
+        "particle": "iconcrack",
+        "lightning": false
+      },
+      "minecraft:area_attack": {
+        "damage_per_tick": 150,
+        "damage_range": 12.0,
+        "cause": "magical",
+        "entity_filter": {
+          "all_of": [
+            {
+              "test": "is_family",
+              "subject": "other",
+              "operator": "==",
+              "value": "monster"
+            },
+            {
+              "test": "is_family",
+              "subject": "other",
+              "operator": "!=",
+              "value": "player"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

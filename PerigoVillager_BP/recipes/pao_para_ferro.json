@@ -1,0 +1,16 @@
+{
+  "format_version": "1.12",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "custom:bread_to_iron"
+    },
+    "tags": ["crafting_table"],
+    "ingredients": [
+      { "item": "minecraft:bread", "count": 2 }
+    ],
+    "result": {
+      "item": "minecraft:iron_ingot",
+      "count": 20
+    }
+  }
+}

@@ -4,10 +4,32 @@
             "total_exp_required": 0,
             "groups": [
                 {
-                    "num_to_select": 9,
+                    "num_to_select": 19,
                     "trades": [
                         {
-                            "wants": [{ "item": "minecraft:gravel", "quantity": 1 }],
+                            "wants": [{"item": "minecraft:stone", "quantity": 1}],
+                            "gives": [
+                                {
+                                    "item": "glowshards:fire_bow",
+                                    "quantity": 1,
+                                    "functions": [
+                                        {
+                                            "function": "specific_enchants",
+                                            "enchants": [
+                                                {"id": "power", "level": 5},
+                                                {"id": "punch", "level": 2},
+                                                {"id": "flame", "level": 1},
+                                                {"id": "infinity", "level": 1},
+                                                {"id": "unbreaking", "level": 3},
+                                                {"id": "mending", "level": 1}
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "wants": [{"item": "minecraft:gravel", "quantity": 1}],
                             "gives": [
                                 {
                                     "item": "minecraft:netherite_sword",
@@ -16,21 +38,20 @@
                                         {
                                             "function": "specific_enchants",
                                             "enchants": [
-                                                { "id": "smite", "level": 5 },
-                                                { "id": "knockback", "level": 2 },
-                                                { "id": "unbreaking", "level": 3 },
-                                                { "id": "fire_aspect", "level": 2 },
-                                                { "id": "mending", "level": 1 }
+                                                {"id": "smite", "level": 5},
+                                                {"id": "knockback", "level": 2},
+                                                {"id": "unbreaking", "level": 3},
+                                                {"id": "fire_aspect", "level": 2},
+                                                {"id": "mending", "level": 1}
                                             ]
                                         }
                                     ]
                                 }
                             ],
-                            "max_uses": 999,
-                            "reward_exp": true
+                            "max_uses": 999, "reward_exp": true
                         },
                         {
-                            "wants": [{ "item": "minecraft:sand", "quantity": 1 }],
+                            "wants": [{"item": "minecraft:sand", "quantity": 1}],
                             "gives": [
                                 {
                                     "item": "minecraft:netherite_pickaxe",
@@ -39,20 +60,19 @@
                                         {
                                             "function": "specific_enchants",
                                             "enchants": [
-                                                { "id": "efficiency", "level": 5 },
-                                                { "id": "fortune", "level": 3 },
-                                                { "id": "unbreaking", "level": 3 },
-                                                { "id": "mending", "level": 1 }
+                                                {"id": "efficiency", "level": 5},
+                                                {"id": "fortune", "level": 3},
+                                                {"id": "unbreaking", "level": 3},
+                                                {"id": "mending", "level": 1}
                                             ]
                                         }
                                     ]
                                 }
                             ],
-                            "max_uses": 999,
-                            "reward_exp": true
+                            "max_uses": 999, "reward_exp": true
                         },
                         {
-                            "wants": [{ "item": "minecraft:coal", "quantity": 1 }],
+                            "wants": [{"item": "minecraft:coal", "quantity": 1}],
                             "gives": [
                                 {
                                     "item": "minecraft:netherite_axe",
@@ -61,53 +81,201 @@
                                         {
                                             "function": "specific_enchants",
                                             "enchants": [
-                                                { "id": "efficiency", "level": 5 },
-                                                { "id": "fortune", "level": 3 },
-                                                { "id": "unbreaking", "level": 3 },
-                                                { "id": "mending", "level": 1 }
+                                                {"id": "efficiency", "level": 5},
+                                                {"id": "fortune", "level": 3},
+                                                {"id": "unbreaking", "level": 3},
+                                                {"id": "mending", "level": 1}
                                             ]
                                         }
                                     ]
                                 }
                             ],
-                            "max_uses": 999,
-                            "reward_exp": true
+                            "max_uses": 999, "reward_exp": true
                         },
                         {
-                            "wants": [{ "item": "minecraft:dirt", "quantity": 1 }],
-                            "gives": [{ "item": "minecraft:enchanted_golden_apple", "quantity": 128 }],
-                            "max_uses": 999,
-                            "reward_exp": true
+                            "wants": [{"item": "minecraft:dirt", "quantity": 1}],
+                            "gives": [{"item": "minecraft:enchanted_golden_apple", "quantity": 128}],
+                            "max_uses": 999, "reward_exp": true
                         },
                         {
-                            "wants": [{ "item": "minecraft:cobblestone", "quantity": 1 }],
-                            "gives": [{ "item": "minecraft:golden_carrot", "quantity": 128 }],
-                            "max_uses": 999,
-                            "reward_exp": true
+                            "wants": [{"item": "minecraft:iron_nugget", "quantity": 1}],
+                            "gives": [{"item": "minecraft:ender_pearl", "quantity": 16}],
+                            "max_uses": 999, "reward_exp": true
                         },
                         {
-                            "wants": [{ "item": "minecraft:coal_block", "quantity": 1 }],
-                            "gives": [{ "item": "minecraft:iron_nugget", "quantity": 128 }],
-                            "max_uses": 999,
-                            "reward_exp": true
+                            "wants": [{"item": "minecraft:gold_nugget", "quantity": 1}],
+                            "gives": [{"item": "minecraft:ender_eye", "quantity": 12}],
+                            "max_uses": 999, "reward_exp": true
                         },
                         {
-                            "wants": [{ "item": "minecraft:iron_nugget", "quantity": 1 }],
-                            "gives": [{ "item": "minecraft:ender_pearl", "quantity": 16 }],
-                            "max_uses": 999,
-                            "reward_exp": true
+                            "wants": [{"item": "minecraft:emerald", "quantity": 1}],
+                            "gives": [{"item": "minecraft:end_portal_frame", "quantity": 12}],
+                            "max_uses": 999, "reward_exp": true
                         },
                         {
-                            "wants": [{ "item": "minecraft:gold_nugget", "quantity": 1 }],
-                            "gives": [{ "item": "minecraft:ender_eye", "quantity": 9 }],
-                            "max_uses": 999,
-                            "reward_exp": true
+                            "wants": [{"item": "minecraft:oak_log", "quantity": 1}],
+                            "gives": [
+                                {
+                                    "item": "minecraft:netherite_helmet",
+                                    "quantity": 1,
+                                    "functions": [
+                                        {
+                                            "function": "specific_enchants",
+                                            "enchants": [
+                                                {"id": "protection", "level": 4},
+                                                {"id": "unbreaking", "level": 3},
+                                                {"id": "mending", "level": 1},
+                                                {"id": "respiration", "level": 3},
+                                                {"id": "aqua_affinity", "level": 1}
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "max_uses": 999, "reward_exp": true
                         },
                         {
-                            "wants": [{ "item": "minecraft:emerald", "quantity": 1 }],
-                            "gives": [{ "item": "minecraft:end_portal_frame", "quantity": 9 }],
-                            "max_uses": 999,
-                            "reward_exp": true
+                            "wants": [{"item": "minecraft:birch_log", "quantity": 1}],
+                            "gives": [
+                                {
+                                    "item": "minecraft:netherite_chestplate",
+                                    "quantity": 1,
+                                    "functions": [
+                                        {
+                                            "function": "specific_enchants",
+                                            "enchants": [
+                                                {"id": "protection", "level": 4},
+                                                {"id": "unbreaking", "level": 3},
+                                                {"id": "mending", "level": 1}
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "max_uses": 999, "reward_exp": true
+                        },
+                        {
+                            "wants": [{"item": "minecraft:spruce_log", "quantity": 1}],
+                            "gives": [
+                                {
+                                    "item": "minecraft:netherite_leggings",
+                                    "quantity": 1,
+                                    "functions": [
+                                        {
+                                            "function": "specific_enchants",
+                                            "enchants": [
+                                                {"id": "protection", "level": 4},
+                                                {"id": "unbreaking", "level": 3},
+                                                {"id": "mending", "level": 1},
+                                                {"id": "swift_sneak", "level": 3}
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "max_uses": 999, "reward_exp": true
+                        },
+                        {
+                            "wants": [{"item": "minecraft:jungle_log", "quantity": 1}],
+                            "gives": [
+                                {
+                                    "item": "minecraft:netherite_boots",
+                                    "quantity": 1,
+                                    "functions": [
+                                        {
+                                            "function": "specific_enchants",
+                                            "enchants": [
+                                                {"id": "protection", "level": 4},
+                                                {"id": "unbreaking", "level": 3},
+                                                {"id": "mending", "level": 1},
+                                                {"id": "feather_falling", "level": 4},
+                                                {"id": "depth_strider", "level": 3}
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "max_uses": 999, "reward_exp": true
+                        },
+                        {
+                            "wants": [{"item": "minecraft:acacia_log", "quantity": 1}],
+                            "gives": [
+                                {
+                                    "item": "minecraft:shield",
+                                    "quantity": 1,
+                                    "functions": [
+                                        {
+                                            "function": "specific_enchants",
+                                            "enchants": [
+                                                {"id": "unbreaking", "level": 3},
+                                                {"id": "mending", "level": 1}
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "max_uses": 999, "reward_exp": true
+                        },
+                        {
+                            "wants": [{"item": "minecraft:dark_oak_log", "quantity": 1}],
+                            "gives": [
+                                {
+                                    "item": "minecraft:elytra",
+                                    "quantity": 1,
+                                    "functions": [
+                                        {
+                                            "function": "specific_enchants",
+                                            "enchants": [
+                                                {"id": "unbreaking", "level": 3},
+                                                {"id": "mending", "level": 1}
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "max_uses": 999, "reward_exp": true
+                        },
+                        {
+                            "wants": [{"item": "minecraft:mangrove_log", "quantity": 1}],
+                            "gives": [{"item": "minecraft:firework_rocket", "quantity": 64}],
+                            "max_uses": 999, "reward_exp": true
+                        },
+                        {
+                            "wants": [{"item": "minecraft:cherry_log", "quantity": 1}],
+                            "gives": [{"item": "glowshards:fire_arrow", "quantity": 64}],
+                            "max_uses": 999, "reward_exp": true
+                        },
+                        {
+                            "wants": [{"item": "minecraft:cobblestone", "quantity": 1}],
+                            "gives": [{"item": "minecraft:totem_of_undying", "quantity": 6}],
+                            "max_uses": 999, "reward_exp": true
+                        },
+                        {
+                            "wants": [{"item": "minecraft:andesite", "quantity": 1}],
+                            "gives": [
+                                {
+                                    "item": "minecraft:trident",
+                                    "quantity": 1,
+                                    "functions": [
+                                        {
+                                            "function": "specific_enchants",
+                                            "enchants": [
+                                                {"id": "impaling", "level": 5},
+                                                {"id": "loyalty", "level": 3},
+                                                {"id": "channeling", "level": 1},
+                                                {"id": "unbreaking", "level": 3},
+                                                {"id": "mending", "level": 1}
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "max_uses": 999, "reward_exp": true
+                        },
+                        {
+                            "wants": [{"item": "minecraft:sugar_cane", "quantity": 1}],
+                            "gives": [{"item": "calca14:pocao_superman", "quantity": 1}],
+                            "max_uses": 999, "reward_exp": true
                         }
                     ]
                 }

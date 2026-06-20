@@ -1,1 +1,5 @@
+item.calca14:fire_bow=Fire Bow
+item.calca14:fire_arrow=Super Fire Arrow
+entity.calca14:fire_arrow.name=Super Fire Arrow
+
 entity.perigo:vagabundo.name= Perigo Villager

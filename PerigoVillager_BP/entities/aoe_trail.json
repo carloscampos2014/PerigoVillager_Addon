@@ -1,0 +1,54 @@
+{
+  "format_version": "1.20.50",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "calca14:aoe_trail",
+      "is_spawnable": false,
+      "is_summonable": true
+    },
+    "components": {
+      "minecraft:collision_box": { "width": 0.1, "height": 0.1 },
+      "minecraft:physics": { "has_gravity": false },
+      "minecraft:area_attack": {
+        "damage_range": 4.0,
+        "damage_per_tick": 20,
+        "play_effect": false,
+        "entity_filter": {
+          "all_of": [
+            { "test": "is_family", "subject": "other", "operator": "==", "value": "monster" },
+            { "test": "is_family", "subject": "other", "operator": "!=", "value": "player" }
+          ]
+        },
+        "mob_effect": {
+          "effect_name": "instant_damage",
+          "effect_time": 1,
+          "effect_amplifier": 5
+        }
+      },
+      "minecraft:projectile": {
+        "on_hit": {
+          "remove_on_hit": {}
+        },
+        "power": 0.0,
+        "gravity": 0.0
+      },
+      "minecraft:timer": {
+        "time": 0.1,
+        "time_down_event": {
+          "event": "calca14:despawn",
+          "target": "self"
+        }
+      }
+    },
+    "events": {
+      "calca14:despawn": {
+        "add": {
+          "component_groups": []
+        },
+        "run_command": {
+          "command": [ "kill @s" ]
+        }
+      }
+    }
+  }
+}

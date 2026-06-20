@@ -1,0 +1,18 @@
+{
+  "format_version": "1.20.0",
+  "minecraft:recipe_shapeless": {
+    "description": {
+      "identifier": "calca14:fire_arrow_recipe"
+    },
+    "tags": [ "crafting_table" ],
+    "ingredients": [
+      { "item": "minecraft:gravel" },
+      { "item": "minecraft:stick" },
+      { "item": "minecraft:stone" }
+    ],
+    "result": {
+      "item": "calca14:fire_arrow",
+      "count": 64
+    }
+  }
+}
