@@ -45,7 +45,7 @@
       "minecraft:area_attack": {
         "damage_per_tick": 150,
         "damage_range": 12.0,
-        "cause": "magic",
+        "cause": "magical",
         "entity_filter": {
           "all_of": [
             {
