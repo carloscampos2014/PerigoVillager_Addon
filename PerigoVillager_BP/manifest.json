@@ -1,52 +1,67 @@
 {
-	"format_version": 2,
-	"metadata": {
-		"authors": [
-			"Campos, Carlos"
-		],
-		"generated_with": {
-			"bridge": [
-				"2.7.54"
-			],
-			"dash": [
-				"0.11.7"
-			]
-		}
-	},
-	"header": {
-		"name": "Perigo Villager Addon (Behavior Pack)",
-		"description": "Pacote de comportamento para o Perigo Villager Addon, introduzindo villagers personalizados com trocas únicas e interações especiais relacionadas ao Perigo.",
-		"min_engine_version": [
-			1,
-			26,
-			0
-		],
-		"uuid": "5690f808-8509-4efd-95c8-2b3c64ff73fb",
-		"version": [
-			1,
-			0,
-			0
-		]
-	},
-	"modules": [
-		{
-			"type": "data",
-			"uuid": "bd3ef83d-eb9a-4cc8-b873-7d0e45b19d40",
-			"version": [
-				1,
-				0,
-				0
-			]
-		}
-	],
-	"dependencies": [
-		{
-			"uuid": "57d44b25-6291-4c31-8630-56a03dce96d3",
-			"version": [
-				1,
-				0,
-				0
-			]
-		}
-	]
+    "format_version": 2,
+    "metadata": {
+        "authors": [
+            "Campos, Carlos"
+        ],
+        "generated_with": {
+            "bridge": [
+                "2.7.54"
+            ],
+            "dash": [
+                "0.11.7"
+            ]
+        }
+    },
+    "header": {
+        "name": "Perigo Villager Addon (Behavior Pack)",
+        "description": "Pacote de comportamento para o Perigo Villager Addon, introduzindo villagers personalizados com trocas únicas e interações especiais relacionadas ao Perigo.",
+        "min_engine_version": [
+            1,
+            26,
+            0
+        ],
+        "uuid": "5690f808-8509-4efd-95c8-2b3c64ff73fb",
+        "version": [
+            1,
+            0,
+            0
+        ]
+    },
+    "modules": [
+        {
+            "type": "data",
+            "uuid": "bd3ef83d-eb9a-4cc8-b873-7d0e45b19d40",
+            "version": [
+                1,
+                0,
+                0
+            ]
+        },
+        {
+            "type": "script",
+            "language": "javascript",
+            "uuid": "f2a2d488-8422-494b-9e4a-9b4e6727222f",
+            "entry": "scripts/main.js",
+            "version": [
+                1,
+                0,
+                0
+            ]
+        }
+    ],
+    "dependencies": [
+        {
+            "uuid": "57d44b25-6291-4c31-8630-56a03dce96d3",
+            "version": [
+                1,
+                0,
+                0
+            ]
+        },
+        {
+            "module_name": "@minecraft/server",
+            "version": "1.14.0"
+        }
+    ]
 }

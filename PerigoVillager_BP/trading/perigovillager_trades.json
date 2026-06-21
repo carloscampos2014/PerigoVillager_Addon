@@ -4,7 +4,7 @@
             "total_exp_required": 0,
             "groups": [
                 {
-                    "num_to_select": 19,
+                    "num_to_select": 10,
                     "trades": [
                         {
                             "wants": [{"item": "minecraft:stone", "quantity": 1}],
@@ -153,7 +153,17 @@
                                 }
                             ],
                             "max_uses": 999, "reward_exp": true
-                        },
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "total_exp_required": 1,
+            "groups": [
+                {
+                    "num_to_select": 9,
+                    "trades": [
                         {
                             "wants": [{"item": "minecraft:spruce_log", "quantity": 1}],
                             "gives": [
@@ -282,4 +292,4 @@
             ]
         }
     ]
-}w
+}

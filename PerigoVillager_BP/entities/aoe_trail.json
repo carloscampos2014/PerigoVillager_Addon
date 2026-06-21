@@ -12,17 +12,12 @@
       "minecraft:area_attack": {
         "damage_range": 4.0,
         "damage_per_tick": 20,
-        "play_effect": false,
+        "cause": "magic",
         "entity_filter": {
           "all_of": [
             { "test": "is_family", "subject": "other", "operator": "==", "value": "monster" },
             { "test": "is_family", "subject": "other", "operator": "!=", "value": "player" }
           ]
-        },
-        "mob_effect": {
-          "effect_name": "instant_damage",
-          "effect_time": 1,
-          "effect_amplifier": 5
         }
       },
       "minecraft:projectile": {
@@ -45,7 +40,7 @@
         "add": {
           "component_groups": []
         },
-        "run_command": {
+        "queue_command": {
           "command": [ "kill @s" ]
         }
       }

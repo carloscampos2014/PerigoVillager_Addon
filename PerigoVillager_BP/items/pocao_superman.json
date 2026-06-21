@@ -1,5 +1,5 @@
 {
-  "format_version": "1.20.30",
+  "format_version": "1.20.80",
   "minecraft:item": {
     "description": {
       "identifier": "calca14:pocao_superman",
@@ -11,26 +11,23 @@
       "minecraft:display_name": {
         "value": "Poção do Superman"
       },
-      "minecraft:icon": "calca14_pocao_icone",
-      "minecraft:max_stack_size": 1,
-      "minecraft:use_animation": "drink",
-      "minecraft:use_duration": 32,
+      "minecraft:icon": {
+        "textures": {
+          "default": "calca14_pocao_icone"
+        }
+      },
+      "minecraft:max_stack_size": 64,
+      "minecraft:use_modifiers": {
+        "use_duration": 1.6
+      },
+      "minecraft:consumable": {
+        "animation": "drink",
+        "consume_sound": "drink"
+      },
       "minecraft:food": {
         "nutrition": 4,
         "saturation_modifier": 1.2,
-        "can_always_eat": true,
-        "using_converts_to": "minecraft:glass_bottle",
-        "effects": [
-          { "name": "regeneration", "chance": 1.0, "duration": 7200, "amplifier": 255 },
-          { "name": "absorption", "chance": 1.0, "duration": 7200, "amplifier": 255 },
-          { "name": "resistance", "chance": 1.0, "duration": 7200, "amplifier": 255 },
-          { "name": "fire_resistance", "chance": 1.0, "duration": 7200, "amplifier": 255 },
-          { "name": "water_breathing", "chance": 1.0, "duration": 7200, "amplifier": 255 },
-          { "name": "strength", "chance": 1.0, "duration": 7200, "amplifier": 255 },
-          { "name": "haste", "chance": 1.0, "duration": 7200, "amplifier": 255 },
-          { "name": "speed", "chance": 1.0, "duration": 7200, "amplifier": 15 },
-          { "name": "jump_boost", "chance": 1.0, "duration": 7200, "amplifier": 10 }
-        ]
+        "can_always_eat": true
       }
     }
   }
