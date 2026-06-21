@@ -10,7 +10,7 @@
         "components": {
             "minecraft:type_family": { "family": [ "perigo", "wandering_trader", "mob" ]},
             "minecraft:economy_trade_table": {
-                "display_name": "entity.perigo:villager.name",
+                "display_name": "Produtos que Cairam do Cminhão",
                 "table": "trading/economy_trades/perigovillager_trades.json",
                 "new_screen": true
             },

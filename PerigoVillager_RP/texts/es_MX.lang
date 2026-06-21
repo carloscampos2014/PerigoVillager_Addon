@@ -2,4 +2,5 @@ item.calca14:fire_bow=Arco de Fuego
 item.calca14:fire_arrow=Súper Flecha de Fuego
 entity.calca14:fire_arrow.name=Súper Flecha de Fuego
 
-entity.perigo:vagabundo.name= Perigo Villager
+entity.perigo:villager.name=Perigo Villager
+item.calca14:pocao_superman=Poción de Superman

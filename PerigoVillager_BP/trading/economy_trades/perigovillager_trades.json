@@ -10,7 +10,7 @@
                             "wants": [{"item": "minecraft:stone", "quantity": 1}],
                             "gives": [
                                 {
-                                    "item": "glowshards:fire_bow",
+                                    "item": "calca14:fire_bow",
                                     "quantity": 1,
                                     "functions": [
                                         {
@@ -242,7 +242,7 @@
                         },
                         {
                             "wants": [{"item": "minecraft:cherry_log", "quantity": 1}],
-                            "gives": [{"item": "glowshards:fire_arrow", "quantity": 64}],
+                            "gives": [{"item": "calca14:fire_arrow", "quantity": 64}],
                             "max_uses": 999, "reward_exp": true
                         },
                         {
