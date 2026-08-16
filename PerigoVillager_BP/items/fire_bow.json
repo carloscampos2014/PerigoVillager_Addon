@@ -8,18 +8,20 @@
     "components": {
       "minecraft:icon": "fire_bow",
       "minecraft:max_stack_size": 1,
-      "minecraft:durability": { "max_durability": 9999 },
+      "minecraft:durability": {
+        "max_durability": 9999
+      },
       "minecraft:hand_equipped": true,
       "minecraft:enchantable": {
         "value": 15,
         "slot": "bow"
       },
       "minecraft:damage": {
-        "value": 300
+        "value": 10
       },
       "minecraft:use_modifiers": {
         "use_duration": 72000,
-        "movement_modifier": 0.35
+        "movement_modifier": 0.8
       },
       "minecraft:use_animation": "bow",
       "minecraft:shooter": {
@@ -33,6 +35,9 @@
         ],
         "charge_on_draw": true,
         "scale_power_by_draw_duration": true
+      },
+      "minecraft:display": {
+        "item_animations": true
       }
     }
   }
