@@ -162,7 +162,7 @@
             "total_exp_required": 1,
             "groups": [
                 {
-                    "num_to_select": 12,
+                    "num_to_select": 13,
                     "trades": [
                         {
                             "wants": [{"item": "minecraft:spruce_log", "quantity": 1}],
