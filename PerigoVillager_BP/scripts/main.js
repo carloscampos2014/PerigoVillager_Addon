@@ -139,7 +139,15 @@ system.runInterval(() => {
                 families: ["monster"]
             });
 
-            for (const alvo of alvos) {
+            const dragoes = player.dimension.getEntities({
+                location: player.location,
+                maxDistance: 15,
+                families: ["dragon"]
+            });
+
+            const todosAlvos = [...alvos, ...dragoes];
+
+            for (const alvo of todosAlvos) {
                 try {
                     if (alvo.typeId === "minecraft:player") continue;
                     if (alvo.location.y >= 320 || alvo.location.y <= -64) continue;
