@@ -15,6 +15,34 @@ function flashLuz(dimension, pos) {
 }
 
 // ==========================================
+// UTILITÁRIO: Calcula posição segura para o raio
+// Verifica raio de 2 blocos ao redor do mob (horizontal e acima)
+// Se tiver bloco sólido próximo, sobe o raio 20 blocos acima
+// Se estiver ao ar livre, cai 2 blocos acima normalmente
+// ==========================================
+function posicaoRaio(dimension, pos) {
+    const cx = Math.floor(pos.x);
+    const cy = Math.floor(pos.y);
+    const cz = Math.floor(pos.z);
+
+    // Verifica blocos num raio de 2 horizontalmente e até 4 blocos acima
+    for (let dx = -2; dx <= 2; dx++) {
+        for (let dz = -2; dz <= 2; dz++) {
+            for (let dy = 0; dy <= 4; dy++) {
+                const bloco = dimension.getBlock({ x: cx + dx, y: cy + dy, z: cz + dz });
+                if (bloco && bloco.typeId !== "minecraft:air") {
+                    // Bloco sólido próximo — raio cai bem acima para não atingir estrutura
+                    return { x: pos.x, y: pos.y + 20, z: pos.z };
+                }
+            }
+        }
+    }
+
+    // Área livre — raio cai 2 blocos acima normalmente
+    return { x: pos.x, y: pos.y + 2, z: pos.z };
+}
+
+// ==========================================
 // 1. RASTRO E SUPER ATAQUE AUTOMÁTICO (Liberado na Água)
 // ==========================================
 system.runInterval(() => {
@@ -57,15 +85,9 @@ system.runInterval(() => {
                 const pos = alvosMorte.location;
                 alvosMorte.kill();
                 
-                // Verifica se tem bloco sólido acima antes de spawnar o raio
-                // Evita incêndio em estruturas quando o mob está coberto por teto
-                const posRaio = { x: pos.x, y: pos.y + 2, z: pos.z };
-                const blocoAcima = arrow.dimension.getBlock(posRaio);
-                if (!blocoAcima || blocoAcima.typeId === "minecraft:air") {
-                    arrow.dimension.spawnEntity("minecraft:lightning_bolt", posRaio);
-                } else {
-                    arrow.dimension.spawnParticle("minecraft:lightning_recharge_station_particles", posRaio);
-                }
+                // Calcula posição segura para o raio (evita estruturas próximas)
+                const posRaio = posicaoRaio(arrow.dimension, pos);
+                arrow.dimension.spawnEntity("minecraft:lightning_bolt", posRaio);
                 arrow.dimension.spawnParticle("minecraft:huge_explosion_emitter", pos);
                 arrow.dimension.spawnParticle("minecraft:electric_spark_particle", pos);
                 flashLuz(arrow.dimension, pos);
@@ -107,15 +129,9 @@ system.runInterval(() => {
             const pos = alvo.location;
             alvo.kill();
 
-            // Verifica se tem bloco sólido acima antes de spawnar o raio
-            // Evita incêndio em estruturas quando o mob está coberto por teto
-            const posRaio = { x: pos.x, y: pos.y + 2, z: pos.z };
-            const blocoAcima = player.dimension.getBlock(posRaio);
-            if (!blocoAcima || blocoAcima.typeId === "minecraft:air") {
-                player.dimension.spawnEntity("minecraft:lightning_bolt", posRaio);
-            } else {
-                player.dimension.spawnParticle("minecraft:lightning_recharge_station_particles", posRaio);
-            }
+            // Calcula posição segura para o raio (evita estruturas próximas)
+            const posRaio = posicaoRaio(player.dimension, pos);
+            player.dimension.spawnEntity("minecraft:lightning_bolt", posRaio);
             player.dimension.spawnParticle("minecraft:huge_explosion_emitter", pos);
             player.dimension.spawnParticle("minecraft:electric_spark_particle", pos);
             flashLuz(player.dimension, pos);
