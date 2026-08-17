@@ -43,10 +43,12 @@ system.runInterval(() => {
                 const pos = alvosMorte.location;
                 alvosMorte.kill();
                 
-                // Visual de raio sem causar fogo: usa partículas em vez da entidade real de raio
-                arrow.dimension.spawnParticle("minecraft:lightning_bolt_particles", pos);
+                // Visual de raio e som de trovão
+                arrow.dimension.spawnParticle("minecraft:lightning_recharge_station_particles", pos);
                 arrow.dimension.spawnParticle("minecraft:huge_explosion_emitter", pos);
-                arrow.dimension.runCommandAsync(`playsound ambient.weather.thunder @a ${pos.x} ${pos.y} ${pos.z} 1 1`);
+                arrow.dimension.spawnParticle("minecraft:electric_spark_particle", pos);
+                arrow.dimension.runCommandAsync(`execute positioned ${pos.x} ${pos.y} ${pos.z} run playsound ambient.weather.thunder @a ~ ~ ~ 1 1`);
+                arrow.dimension.runCommandAsync(`execute positioned ${pos.x} ${pos.y} ${pos.z} run playsound random.explode @a ~ ~ ~ 1 1`);
             }
         }
     }
@@ -83,10 +85,12 @@ system.runInterval(() => {
             const pos = alvo.location;
             alvo.kill();
 
-            // Visual de raio idêntico ao da fire arrow
-            player.dimension.spawnParticle("minecraft:lightning_bolt_particles", pos);
+            // Visual de raio e som de trovão
+            player.dimension.spawnParticle("minecraft:lightning_recharge_station_particles", pos);
             player.dimension.spawnParticle("minecraft:huge_explosion_emitter", pos);
-            player.dimension.runCommandAsync(`playsound ambient.weather.thunder @a ${pos.x} ${pos.y} ${pos.z} 1 1`);
+            player.dimension.spawnParticle("minecraft:electric_spark_particle", pos);
+            player.dimension.runCommandAsync(`execute positioned ${pos.x} ${pos.y} ${pos.z} run playsound ambient.weather.thunder @a ~ ~ ~ 1 1`);
+            player.dimension.runCommandAsync(`execute positioned ${pos.x} ${pos.y} ${pos.z} run playsound random.explode @a ~ ~ ~ 1 1`);
         }
     }
 }, 2);
