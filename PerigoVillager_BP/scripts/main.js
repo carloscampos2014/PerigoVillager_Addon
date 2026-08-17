@@ -192,15 +192,8 @@ world.afterEvents.itemCompleteUse.subscribe((event) => {
         player.addEffect("minecraft:saturation", 216000, { amplifier: 255 });
 
         player.addTag("superman_ativo");
-
-        // Habilita voo estilo Superman via API (sem precisar de Education Edition)
-        const abilities = player.getComponent("minecraft:player_abilities");
-        if (abilities) {
-            abilities.mayFly = true;
-            abilities.flying = true;
-        }
         
-        player.sendMessage("§e§lVocê ganhou os poderes do Superman! Use o salto duplo para voar!");
+        player.sendMessage("§e§lVocê ganhou os poderes do Superman, infelizmente só não dá para fazer voar!");
     }
 });
 
@@ -216,11 +209,6 @@ system.runInterval(() => {
         // Se a poção acabar, limpa a tag
         if (!temResistencia) {
             p.removeTag("superman_ativo");
-            const abilities = p.getComponent("minecraft:player_abilities");
-            if (abilities) {
-                abilities.flying = false;
-                abilities.mayFly = false;
-            }
             p.sendMessage("§c§lSeus poderes se esgotaram!");
             continue;
         }
