@@ -57,9 +57,15 @@ system.runInterval(() => {
                 const pos = alvosMorte.location;
                 alvosMorte.kill();
                 
-                // Raio acima do mob para não queimar os drops no chão
+                // Verifica se tem bloco sólido acima antes de spawnar o raio
+                // Evita incêndio em estruturas quando o mob está coberto por teto
                 const posRaio = { x: pos.x, y: pos.y + 2, z: pos.z };
-                arrow.dimension.spawnEntity("minecraft:lightning_bolt", posRaio);
+                const blocoAcima = arrow.dimension.getBlock(posRaio);
+                if (!blocoAcima || blocoAcima.typeId === "minecraft:air") {
+                    arrow.dimension.spawnEntity("minecraft:lightning_bolt", posRaio);
+                } else {
+                    arrow.dimension.spawnParticle("minecraft:lightning_recharge_station_particles", posRaio);
+                }
                 arrow.dimension.spawnParticle("minecraft:huge_explosion_emitter", pos);
                 arrow.dimension.spawnParticle("minecraft:electric_spark_particle", pos);
                 flashLuz(arrow.dimension, pos);
@@ -101,9 +107,15 @@ system.runInterval(() => {
             const pos = alvo.location;
             alvo.kill();
 
-            // Raio acima do mob para não queimar os drops no chão
+            // Verifica se tem bloco sólido acima antes de spawnar o raio
+            // Evita incêndio em estruturas quando o mob está coberto por teto
             const posRaio = { x: pos.x, y: pos.y + 2, z: pos.z };
-            player.dimension.spawnEntity("minecraft:lightning_bolt", posRaio);
+            const blocoAcima = player.dimension.getBlock(posRaio);
+            if (!blocoAcima || blocoAcima.typeId === "minecraft:air") {
+                player.dimension.spawnEntity("minecraft:lightning_bolt", posRaio);
+            } else {
+                player.dimension.spawnParticle("minecraft:lightning_recharge_station_particles", posRaio);
+            }
             player.dimension.spawnParticle("minecraft:huge_explosion_emitter", pos);
             player.dimension.spawnParticle("minecraft:electric_spark_particle", pos);
             flashLuz(player.dimension, pos);
