@@ -53,52 +53,52 @@ function posicaoRaio(dimension, pos) {
 system.runInterval(() => {
     const dimensions = ["overworld", "nether", "the_end"];
     for (const dim of dimensions) {
-        // Rastreia estritamente a flecha customizada do add-on
         const arrows = world.getDimension(dim).getEntities({ type: "calca14:fire_arrow" });
         
         for (const arrow of arrows) {
-            if (arrow.location.y >= 320 || arrow.location.y <= -64) continue;
+            try {
+                if (arrow.location.y >= 320 || arrow.location.y <= -64) continue;
 
-            const vel = arrow.getVelocity();
-            if (Math.abs(vel.x) < 0.05 && Math.abs(vel.y) < 0.05 && Math.abs(vel.z) < 0.05) {
-                continue;     
-            }
+                const vel = arrow.getVelocity();
+                if (Math.abs(vel.x) < 0.05 && Math.abs(vel.y) < 0.05 && Math.abs(vel.z) < 0.05) {
+                    continue;     
+                }
 
-            // SENSOR DE ÁGUA (Apenas visual: mostra bolhas na água e fogo fora dela, mas sem bloquear o raio)
-            const block = arrow.dimension.getBlock(arrow.location);
-            const isInWater = block && (block.typeId === "minecraft:water" || block.typeId === "minecraft:flowing_water");
+                const block = arrow.dimension.getBlock(arrow.location);
+                const isInWater = block && (block.typeId === "minecraft:water" || block.typeId === "minecraft:flowing_water");
 
-            if (isInWater) {
-                arrow.runCommandAsync("particle minecraft:bubble_column_up_particle ~ ~ ~");
-                arrow.runCommandAsync("particle minecraft:water_splash_particle ~ ~ ~");
-            } else {
-                arrow.runCommandAsync("particle minecraft:basic_flame_particle ~ ~ ~");
-                arrow.runCommandAsync("particle minecraft:lava_particle ~ ~ ~");
-            }
+                if (isInWater) {
+                    arrow.runCommandAsync("particle minecraft:bubble_column_up_particle ~ ~ ~");
+                    arrow.runCommandAsync("particle minecraft:water_splash_particle ~ ~ ~");
+                } else {
+                    arrow.runCommandAsync("particle minecraft:basic_flame_particle ~ ~ ~");
+                    arrow.runCommandAsync("particle minecraft:lava_particle ~ ~ ~");
+                }
 
-            // ATAQUE AUTOMÁTICO (Funciona tanto na terra quanto na água agora)
-            const alvos = arrow.dimension.getEntities({
-                location: arrow.location,
-                maxDistance: 30, 
-                families: ["monster"]
-            });
+                const alvos = arrow.dimension.getEntities({
+                    location: arrow.location,
+                    maxDistance: 30, 
+                    families: ["monster"]
+                });
 
-            for (const alvosMorte of alvos) {
-                if (alvosMorte.location.y >= 320 || alvosMorte.location.y <= -64) continue;
-                if (alvosMorte.typeId === "minecraft:player") continue;
+                for (const alvosMorte of alvos) {
+                    try {
+                        if (alvosMorte.location.y >= 320 || alvosMorte.location.y <= -64) continue;
+                        if (alvosMorte.typeId === "minecraft:player") continue;
 
-                const pos = alvosMorte.location;
-                alvosMorte.kill();
-                
-                // Calcula posição segura para o raio (evita estruturas próximas)
-                const posRaio = posicaoRaio(arrow.dimension, pos);
-                arrow.dimension.spawnEntity("minecraft:lightning_bolt", posRaio);
-                arrow.dimension.spawnParticle("minecraft:huge_explosion_emitter", pos);
-                arrow.dimension.spawnParticle("minecraft:electric_spark_particle", pos);
-                flashLuz(arrow.dimension, pos);
-                arrow.runCommandAsync("playsound ambient.weather.thunder @a ~ ~ ~ 1 1");
-                arrow.runCommandAsync("playsound random.explode @a ~ ~ ~ 1 1");
-            }
+                        const pos = alvosMorte.location;
+                        alvosMorte.kill();
+                        
+                        const posRaio = posicaoRaio(arrow.dimension, pos);
+                        arrow.dimension.spawnEntity("minecraft:lightning_bolt", posRaio);
+                        arrow.dimension.spawnParticle("minecraft:huge_explosion_emitter", pos);
+                        arrow.dimension.spawnParticle("minecraft:electric_spark_particle", pos);
+                        flashLuz(arrow.dimension, pos);
+                        arrow.runCommandAsync("playsound ambient.weather.thunder @a ~ ~ ~ 1 1");
+                        arrow.runCommandAsync("playsound random.explode @a ~ ~ ~ 1 1");
+                    } catch (_) {}
+                }
+            } catch (_) {}
         }
     }
 }, 2);
@@ -108,41 +108,41 @@ system.runInterval(() => {
 // ==========================================
 system.runInterval(() => {
     for (const player of world.getPlayers()) {
-        // Verifica se o totem está no slot de offhand
-        const equipment = player.getComponent("minecraft:equippable");
-        if (!equipment) continue;
+        try {
+            const equipment = player.getComponent("minecraft:equippable");
+            if (!equipment) continue;
 
-        const offhandItem = equipment.getEquipment(EquipmentSlot.Offhand);
-        if (!offhandItem || offhandItem.typeId !== "calca14:totem_morte") continue;
+            const offhandItem = equipment.getEquipment(EquipmentSlot.Offhand);
+            if (!offhandItem || offhandItem.typeId !== "calca14:totem_morte") continue;
 
-        if (player.location.y >= 320 || player.location.y <= -64) continue;
+            if (player.location.y >= 320 || player.location.y <= -64) continue;
 
-        // Partícula de aviso ao redor do jogador para indicar que o totem está ativo
-        player.runCommandAsync("particle minecraft:totem_particle ~ ~1 ~");
+            player.runCommandAsync("particle minecraft:totem_particle ~ ~1 ~");
 
-        // Busca monstros no raio de 15 blocos
-        const alvos = player.dimension.getEntities({
-            location: player.location,
-            maxDistance: 15,
-            families: ["monster"]
-        });
+            const alvos = player.dimension.getEntities({
+                location: player.location,
+                maxDistance: 15,
+                families: ["monster"]
+            });
 
-        for (const alvo of alvos) {
-            if (alvo.typeId === "minecraft:player") continue;
-            if (alvo.location.y >= 320 || alvo.location.y <= -64) continue;
+            for (const alvo of alvos) {
+                try {
+                    if (alvo.typeId === "minecraft:player") continue;
+                    if (alvo.location.y >= 320 || alvo.location.y <= -64) continue;
 
-            const pos = alvo.location;
-            alvo.kill();
+                    const pos = alvo.location;
+                    alvo.kill();
 
-            // Calcula posição segura para o raio (evita estruturas próximas)
-            const posRaio = posicaoRaio(player.dimension, pos);
-            player.dimension.spawnEntity("minecraft:lightning_bolt", posRaio);
-            player.dimension.spawnParticle("minecraft:huge_explosion_emitter", pos);
-            player.dimension.spawnParticle("minecraft:electric_spark_particle", pos);
-            flashLuz(player.dimension, pos);
-            player.runCommandAsync("playsound ambient.weather.thunder @a ~ ~ ~ 1 1");
-            player.runCommandAsync("playsound random.explode @a ~ ~ ~ 1 1");
-        }
+                    const posRaio = posicaoRaio(player.dimension, pos);
+                    player.dimension.spawnEntity("minecraft:lightning_bolt", posRaio);
+                    player.dimension.spawnParticle("minecraft:huge_explosion_emitter", pos);
+                    player.dimension.spawnParticle("minecraft:electric_spark_particle", pos);
+                    flashLuz(player.dimension, pos);
+                    player.runCommandAsync("playsound ambient.weather.thunder @a ~ ~ ~ 1 1");
+                    player.runCommandAsync("playsound random.explode @a ~ ~ ~ 1 1");
+                } catch (_) {}
+            }
+        } catch (_) {}
     }
 }, 2);
 
