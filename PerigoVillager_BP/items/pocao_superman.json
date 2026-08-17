@@ -8,9 +8,6 @@
       }
     },
     "components": {
-      "minecraft:display_name": {
-        "value": "Poção do Superman"
-      },
       "minecraft:icon": {
         "textures": {
           "default": "calca14_pocao_icone"

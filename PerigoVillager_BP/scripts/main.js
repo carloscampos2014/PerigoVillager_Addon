@@ -1,4 +1,4 @@
-import { world, system } from "@minecraft/server";
+import { world, system, EquipmentSlot } from "@minecraft/server";
 
 // ==========================================
 // 1. RASTRO E SUPER ATAQUE AUTOMÁTICO (Liberado na Água)
@@ -43,8 +43,8 @@ system.runInterval(() => {
                 const pos = alvosMorte.location;
                 alvosMorte.kill();
                 
-                // Spawna o raio e o trovão em qualquer lugar, incluindo debaixo d'água
-                arrow.dimension.spawnEntity("minecraft:lightning_bolt", pos);
+                // Visual de raio sem causar fogo: usa partículas em vez da entidade real de raio
+                arrow.dimension.spawnParticle("minecraft:lightning_bolt_particles", pos);
                 arrow.dimension.spawnParticle("minecraft:huge_explosion_emitter", pos);
                 arrow.dimension.runCommandAsync(`playsound ambient.weather.thunder @a ${pos.x} ${pos.y} ${pos.z} 1 1`);
             }
@@ -53,7 +53,46 @@ system.runInterval(() => {
 }, 2);
 
 // ==========================================
-// 2. SISTEMA DE CONSUMO DA POÇÃO DO SUPERMAN
+// 2. TOTEM DA MORTE (Offhand — raio 15 blocos)
+// ==========================================
+system.runInterval(() => {
+    for (const player of world.getPlayers()) {
+        // Verifica se o totem está no slot de offhand
+        const equipment = player.getComponent("minecraft:equippable");
+        if (!equipment) continue;
+
+        const offhandItem = equipment.getEquipment(EquipmentSlot.Offhand);
+        if (!offhandItem || offhandItem.typeId !== "calca14:totem_morte") continue;
+
+        if (player.location.y >= 320 || player.location.y <= -64) continue;
+
+        // Partícula de aviso ao redor do jogador para indicar que o totem está ativo
+        player.runCommandAsync("particle minecraft:totem_particle ~ ~1 ~");
+
+        // Busca monstros no raio de 15 blocos
+        const alvos = player.dimension.getEntities({
+            location: player.location,
+            maxDistance: 15,
+            families: ["monster"]
+        });
+
+        for (const alvo of alvos) {
+            if (alvo.typeId === "minecraft:player") continue;
+            if (alvo.location.y >= 320 || alvo.location.y <= -64) continue;
+
+            const pos = alvo.location;
+            alvo.kill();
+
+            // Visual de raio idêntico ao da fire arrow
+            player.dimension.spawnParticle("minecraft:lightning_bolt_particles", pos);
+            player.dimension.spawnParticle("minecraft:huge_explosion_emitter", pos);
+            player.dimension.runCommandAsync(`playsound ambient.weather.thunder @a ${pos.x} ${pos.y} ${pos.z} 1 1`);
+        }
+    }
+}, 2);
+
+// ==========================================
+// 3. SISTEMA DE CONSUMO DA POÇÃO DO SUPERMAN
 // ==========================================
 world.afterEvents.itemCompleteUse.subscribe((event) => {
     const item = event.itemStack;
@@ -73,6 +112,7 @@ world.afterEvents.itemCompleteUse.subscribe((event) => {
         
         // Queda lenta em nível 1 para planar com segurança
         player.addEffect("minecraft:slow_falling", 216000, { amplifier: 1, showParticles: false });
+        player.addEffect("minecraft:saturation", 216000, { amplifier: 255 });
 
         player.addTag("superman_ativo");
         
@@ -81,7 +121,7 @@ world.afterEvents.itemCompleteUse.subscribe((event) => {
 });
 
 // ==========================================
-// 3. VIGILÂNCIA DE PODERES E POUSO SEGURO
+// 4. VIGILÂNCIA DE PODERES E POUSO SEGURO
 // ==========================================
 system.runInterval(() => {
     const superJogadores = world.getPlayers({ tags: ["superman_ativo"] });

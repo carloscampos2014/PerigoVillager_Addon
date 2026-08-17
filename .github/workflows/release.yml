@@ -1,0 +1,67 @@
+name: Build e Release do Addon
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+    types:
+      - closed
+
+jobs:
+  build-and-release:
+    # Para PRs, só executa se o PR foi efetivamente mergeado (não apenas fechado)
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Ler versão do manifest do BP
+        id: versao
+        run: |
+          VERSION=$(jq -r '.header.version | map(tostring) | join(".")' PerigoVillager_BP/manifest.json)
+          echo "versao=$VERSION" >> $GITHUB_OUTPUT
+          echo "Versão detectada: $VERSION"
+
+      - name: Criar o arquivo .mcaddon
+        run: |
+          mkdir -p dist
+          zip -r dist/PerigoVillager.mcaddon PerigoVillager_BP/ PerigoVillager_RP/
+          echo "Arquivo .mcaddon criado com sucesso"
+
+      - name: Criar tag de versão
+        id: tag
+        run: |
+          TAG="v${{ steps.versao.outputs.versao }}"
+          # Se a tag já existir, adiciona o SHA curto para evitar conflito
+          if git ls-remote --tags origin "$TAG" | grep -q "$TAG"; then
+            SHA=$(git rev-parse --short HEAD)
+            TAG="${TAG}-${SHA}"
+          fi
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+          echo "Tag gerada: $TAG"
+
+      - name: Criar Release no GitHub
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          name: "Perigo Villager Addon ${{ steps.tag.outputs.tag }}"
+          body: |
+            ## Perigo Villager Addon ${{ steps.tag.outputs.tag }}
+
+            Release gerada automaticamente a partir do commit `${{ github.sha }}`.
+
+            ### Como instalar
+            1. Baixe o arquivo `PerigoVillager.mcaddon` abaixo.
+            2. Dê duplo clique no arquivo — o Minecraft abrirá e importará automaticamente.
+            3. Ative os pacotes nas configurações do seu mundo.
+            4. Habilite as **Beta APIs** nos experimentos do mundo.
+          files: dist/PerigoVillager.mcaddon
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

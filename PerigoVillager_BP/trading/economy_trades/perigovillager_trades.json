@@ -162,7 +162,7 @@
             "total_exp_required": 1,
             "groups": [
                 {
-                    "num_to_select": 9,
+                    "num_to_select": 11,
                     "trades": [
                         {
                             "wants": [{"item": "minecraft:spruce_log", "quantity": 1}],
@@ -283,8 +283,18 @@
                             "max_uses": 999, "reward_exp": true
                         },
                         {
+                            "wants": [{"item": "minecraft:wheat", "quantity": 1}],
+                            "gives": [{"item": "minecraft:obsidian", "quantity": 64}],
+                            "max_uses": 999, "reward_exp": true
+                        },
+                        {
                             "wants": [{"item": "minecraft:sugar_cane", "quantity": 1}],
                             "gives": [{"item": "calca14:pocao_superman", "quantity": 1}],
+                            "max_uses": 999, "reward_exp": true
+                        },
+                        {
+                            "wants": [{"item": "minecraft:diamond", "quantity": 5}],
+                            "gives": [{"item": "calca14:totem_morte", "quantity": 1}],
                             "max_uses": 999, "reward_exp": true
                         }
                     ]

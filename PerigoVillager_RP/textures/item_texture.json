@@ -3,13 +3,16 @@
   "texture_name": "atlas.items",
   "texture_data": {
     "fire_bow": {
-      "textures": "textures/items/bow_standby"
+      "textures": "textures/items/fire_bow"
     },
     "fire_arrow": {
-      "textures": "textures/items/arrow"
+      "textures": "textures/items/fire_arrow"
     },
     "calca14_pocao_icone": {
       "textures": "textures/items/experience_bottle"
+    },
+    "totem_morte": {
+      "textures": "textures/items/totem"
     }
   }
 }
