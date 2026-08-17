@@ -1,6 +1,20 @@
 import { world, system, EquipmentSlot } from "@minecraft/server";
 
 // ==========================================
+// UTILITÁRIO: Flash de luz na posição do monstro
+// Coloca um bloco light[level=15] por 2 ticks e remove
+// ==========================================
+function flashLuz(dimension, pos) {
+    const x = Math.floor(pos.x);
+    const y = Math.floor(pos.y);
+    const z = Math.floor(pos.z);
+    dimension.runCommandAsync(`setblock ${x} ${y} ${z} light[block_light_level=15] replace air`);
+    system.runTimeout(() => {
+        dimension.runCommandAsync(`setblock ${x} ${y} ${z} air`);
+    }, 2);
+}
+
+// ==========================================
 // 1. RASTRO E SUPER ATAQUE AUTOMÁTICO (Liberado na Água)
 // ==========================================
 system.runInterval(() => {
@@ -43,12 +57,15 @@ system.runInterval(() => {
                 const pos = alvosMorte.location;
                 alvosMorte.kill();
                 
-                // Visual de raio e som de trovão
+                // Visual de raio + flash de luz
                 arrow.dimension.spawnParticle("minecraft:lightning_recharge_station_particles", pos);
                 arrow.dimension.spawnParticle("minecraft:huge_explosion_emitter", pos);
                 arrow.dimension.spawnParticle("minecraft:electric_spark_particle", pos);
-                arrow.dimension.runCommandAsync(`execute positioned ${pos.x} ${pos.y} ${pos.z} run playsound ambient.weather.thunder @a ~ ~ ~ 1 1`);
-                arrow.dimension.runCommandAsync(`execute positioned ${pos.x} ${pos.y} ${pos.z} run playsound random.explode @a ~ ~ ~ 1 1`);
+                arrow.dimension.spawnParticle("minecraft:totem_particle", pos);
+                flashLuz(arrow.dimension, pos);
+                // Som tocado a partir da posição da flecha (tem executador válido)
+                arrow.runCommandAsync("playsound ambient.weather.thunder @a ~ ~ ~ 1 1");
+                arrow.runCommandAsync("playsound random.explode @a ~ ~ ~ 1 1");
             }
         }
     }
@@ -85,12 +102,15 @@ system.runInterval(() => {
             const pos = alvo.location;
             alvo.kill();
 
-            // Visual de raio e som de trovão
+            // Visual de raio + flash de luz
             player.dimension.spawnParticle("minecraft:lightning_recharge_station_particles", pos);
             player.dimension.spawnParticle("minecraft:huge_explosion_emitter", pos);
             player.dimension.spawnParticle("minecraft:electric_spark_particle", pos);
-            player.dimension.runCommandAsync(`execute positioned ${pos.x} ${pos.y} ${pos.z} run playsound ambient.weather.thunder @a ~ ~ ~ 1 1`);
-            player.dimension.runCommandAsync(`execute positioned ${pos.x} ${pos.y} ${pos.z} run playsound random.explode @a ~ ~ ~ 1 1`);
+            player.dimension.spawnParticle("minecraft:totem_particle", pos);
+            flashLuz(player.dimension, pos);
+            // Som tocado a partir do jogador (tem executador válido)
+            player.runCommandAsync("playsound ambient.weather.thunder @a ~ ~ ~ 1 1");
+            player.runCommandAsync("playsound random.explode @a ~ ~ ~ 1 1");
         }
     }
 }, 2);
