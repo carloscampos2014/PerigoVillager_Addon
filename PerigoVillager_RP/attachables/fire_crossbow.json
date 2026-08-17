@@ -1,0 +1,32 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:attachable": {
+    "description": {
+      "identifier": "calca14:fire_crossbow",
+      "materials": {
+        "default": "bow",
+        "enchanted": "bow_enchanted"
+      },
+      "textures": {
+        "default": "textures/items/fire_crossbow",
+        "enchanted": "textures/misc/enchanted_item_glint"
+      },
+      "geometry": {
+        "default": "geometry.crossbow"
+      },
+      "animations": {
+        "hold": "animation.crossbow.hold",
+        "crossbow_controller": "controller.animation.crossbow"
+      },
+      "scripts": {
+        "animate": [
+          "hold",
+          "crossbow_controller"
+        ]
+      },
+      "render_controllers": [
+        "controller.render.item_default"
+      ]
+    }
+  }
+}

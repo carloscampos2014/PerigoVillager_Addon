@@ -1,0 +1,39 @@
+{
+  "format_version": "1.20.50",
+  "minecraft:item": {
+    "description": {
+      "identifier": "calca14:fire_crossbow",
+      "menu_category": { "category": "equipment" }
+    },
+    "components": {
+      "minecraft:icon": "fire_crossbow",
+      "minecraft:max_stack_size": 1,
+      "minecraft:durability": {
+        "max_durability": 9999
+      },
+      "minecraft:hand_equipped": true,
+      "minecraft:enchantable": {
+        "value": 15,
+        "slot": "crossbow"
+      },
+      "minecraft:use_modifiers": {
+        "use_duration": 72000,
+        "movement_modifier": 0.7
+      },
+      "minecraft:use_animation": "crossbow_hold",
+      "minecraft:shooter": {
+        "ammunition": [
+          {
+            "item": "calca14:fire_arrow",
+            "use_offhand": true,
+            "search_inventory": true,
+            "use_in_creative": true
+          }
+        ],
+        "charge_on_draw": true,
+        "scale_power_by_draw_duration": true,
+        "max_draw_duration": 1.0
+      }
+    }
+  }
+}

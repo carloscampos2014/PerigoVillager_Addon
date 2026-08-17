@@ -13,6 +13,9 @@
     },
     "totem_morte": {
       "textures": "textures/items/totem"
+    },
+    "fire_crossbow": {
+      "textures": "textures/items/crossbow_standby"
     }
   }
 }

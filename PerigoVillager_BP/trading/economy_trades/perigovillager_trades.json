@@ -162,7 +162,7 @@
             "total_exp_required": 1,
             "groups": [
                 {
-                    "num_to_select": 11,
+                    "num_to_select": 12,
                     "trades": [
                         {
                             "wants": [{"item": "minecraft:spruce_log", "quantity": 1}],
@@ -295,6 +295,28 @@
                         {
                             "wants": [{"item": "minecraft:diamond", "quantity": 5}],
                             "gives": [{"item": "calca14:totem_morte", "quantity": 1}],
+                            "max_uses": 999, "reward_exp": true
+                        },
+                        {
+                            "wants": [{"item": "minecraft:flint", "quantity": 1}],
+                            "gives": [
+                                {
+                                    "item": "calca14:fire_crossbow",
+                                    "quantity": 1,
+                                    "functions": [
+                                        {
+                                            "function": "specific_enchants",
+                                            "enchants": [
+                                                {"id": "quick_charge", "level": 3},
+                                                {"id": "multishot", "level": 1},
+                                                {"id": "piercing", "level": 4},
+                                                {"id": "unbreaking", "level": 3},
+                                                {"id": "mending", "level": 1}
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
                             "max_uses": 999, "reward_exp": true
                         }
                     ]
