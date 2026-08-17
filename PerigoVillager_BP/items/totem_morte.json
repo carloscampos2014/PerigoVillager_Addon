@@ -13,6 +13,10 @@
       "minecraft:hand_equipped": true,
       "minecraft:durability": {
         "max_durability": 9999
+      },
+      "minecraft:wearable": {
+        "dispensable": true,
+        "slot": "slot.weapon.offhand"
       }
     }
   }
