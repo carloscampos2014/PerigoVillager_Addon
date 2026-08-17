@@ -18,12 +18,10 @@
         "cart_boost": false,
         "inertia": 0.99,
         "liquid_inertia": 0.99,
-        "damage": 10,
-        "on_fire_time": 5,
-        "hit_sound": "bow.hit",
+        "on_fire_time": 10,
         "on_hit": {
           "impact_damage": {
-            "damage": 10,
+            "damage": 25,
             "knockback": true,
             "semi_random_diff_damage": false
           },
