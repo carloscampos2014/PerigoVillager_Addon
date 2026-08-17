@@ -1,4 +1,4 @@
-import { world, system, EquipmentSlot } from "@minecraft/server";
+import { world, system, EquipmentSlot, GameMode } from "@minecraft/server";
 
 // ==========================================
 // UTILITÁRIO: Flash de luz na posição do monstro
@@ -139,8 +139,12 @@ world.afterEvents.itemCompleteUse.subscribe((event) => {
         player.addEffect("minecraft:saturation", 216000, { amplifier: 255 });
 
         player.addTag("superman_ativo");
+
+        // Habilita voo estilo Superman
+        player.runCommandAsync("ability @s mayfly true");
+        player.runCommandAsync("ability @s flying true");
         
-        player.sendMessage("§e§lVocê ganhou os poderes do Superman, infelizmente só não dá para fazer voar!");
+        player.sendMessage("§e§lVocê ganhou os poderes do Superman! Use o salto duplo para voar!");
     }
 });
 
@@ -156,6 +160,9 @@ system.runInterval(() => {
         // Se a poção acabar, limpa a tag
         if (!temResistencia) {
             p.removeTag("superman_ativo");
+            // Remove o voo ao acabar os poderes
+            p.runCommandAsync("ability @s flying false");
+            p.runCommandAsync("ability @s mayfly false");
             p.sendMessage("§c§lSeus poderes se esgotaram!");
             continue;
         }
