@@ -61,7 +61,6 @@ jobs:
             1. Baixe o arquivo `PerigoVillager.mcaddon` abaixo.
             2. Dê duplo clique no arquivo — o Minecraft abrirá e importará automaticamente.
             3. Ative os pacotes nas configurações do seu mundo.
-            4. Habilite as **Beta APIs** nos experimentos do mundo.
           files: dist/PerigoVillager.mcaddon
           draft: false
           prerelease: false

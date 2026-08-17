@@ -98,4 +98,3 @@ PerigoVillager_RP/   — Resource Pack (texturas, modelos, animações, localiza
 1. Baixe ou clone este repositório.
 2. Copie `PerigoVillager_BP` e `PerigoVillager_RP` para a pasta de development packs do seu Minecraft Bedrock.
 3. Ative ambos os pacotes nas configurações do seu mundo.
-4. Habilite os experimentos necessários (Beta APIs para o script funcionar).
