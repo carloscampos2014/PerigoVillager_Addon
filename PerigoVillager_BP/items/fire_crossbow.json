@@ -20,7 +20,7 @@
         "use_duration": 72000,
         "movement_modifier": 0.7
       },
-      "minecraft:use_animation": "crossbow_hold",
+      "minecraft:use_animation": "bow",
       "minecraft:shooter": {
         "ammunition": [
           {
@@ -31,8 +31,7 @@
           }
         ],
         "charge_on_draw": true,
-        "scale_power_by_draw_duration": true,
-        "max_draw_duration": 1.0
+        "scale_power_by_draw_duration": true
       }
     }
   }

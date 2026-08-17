@@ -128,7 +128,10 @@ system.runInterval(() => {
 
             if (player.location.y >= 320 || player.location.y <= -64) continue;
 
-            player.runCommandAsync("particle minecraft:totem_particle ~ ~1 ~");
+            // Partícula discreta só a cada 20 ticks (1 segundo) para não atrapalhar visão
+            if (system.currentTick % 20 === 0) {
+                player.runCommandAsync("particle minecraft:totem_particle ~ ~1 ~");
+            }
 
             const alvos = player.dimension.getEntities({
                 location: player.location,
@@ -194,7 +197,7 @@ world.afterEvents.itemCompleteUse.subscribe((event) => {
 });
 
 // ==========================================
-// 4. VIGILÂNCIA DE PODERES E POUSO SEGURO
+// 4. VIGILÂNCIA DE PODERES E CONTADOR DO SUPERMAN
 // ==========================================
 system.runInterval(() => {
     const superJogadores = world.getPlayers({ tags: ["superman_ativo"] });
@@ -205,7 +208,6 @@ system.runInterval(() => {
         // Se a poção acabar, limpa a tag
         if (!temResistencia) {
             p.removeTag("superman_ativo");
-            // Remove o voo ao acabar os poderes via API
             const abilities = p.getComponent("minecraft:player_abilities");
             if (abilities) {
                 abilities.flying = false;
@@ -214,5 +216,18 @@ system.runInterval(() => {
             p.sendMessage("§c§lSeus poderes se esgotaram!");
             continue;
         }
+
+        // Exibe contador de tempo restante no actionbar
+        const ticksRestantes = temResistencia.duration;
+        const totalSegundos = Math.ceil(ticksRestantes / 20);
+        const horas = Math.floor(totalSegundos / 3600);
+        const minutos = Math.floor((totalSegundos % 3600) / 60);
+        const segundos = totalSegundos % 60;
+        const tempoStr = horas > 0
+            ? `${horas}h ${minutos}m ${segundos}s`
+            : minutos > 0
+                ? `${minutos}m ${segundos}s`
+                : `${segundos}s`;
+        p.onScreenDisplay.setActionBar(`§e§lSuperman §r§7| §fPoderes: §a${tempoStr}`);
     }
 }, 10);
