@@ -1,5 +1,18 @@
 import { world, system, EquipmentSlot, GameMode } from "@minecraft/server";
 
+// Controla erros já reportados para não spammar o chat
+const errosReportados = new Set();
+
+function reportarErro(contexto, erro) {
+    const chave = `${contexto}:${erro.message}`;
+    if (!errosReportados.has(chave)) {
+        errosReportados.add(chave);
+        for (const p of world.getPlayers()) {
+            p.sendMessage(`§c§l[PerigoVillager] Erro em ${contexto}: ${erro.message}`);
+        }
+    }
+}
+
 // ==========================================
 // UTILITÁRIO: Flash de luz na posição do monstro
 // Coloca um bloco light[level=15] por 2 ticks e remove
@@ -36,9 +49,7 @@ function posicaoRaio(dimension, pos) {
                         // Bloco sólido próximo — raio cai bem acima para não atingir estrutura
                         return { x: pos.x, y: pos.y + 20, z: pos.z };
                     }
-                } catch (_) {
-                    // Chunk não carregado, ignora
-                }
+                } catch (e) { reportarErro("posicaoRaio", e); }
             }
         }
     }
@@ -96,9 +107,9 @@ system.runInterval(() => {
                         flashLuz(arrow.dimension, pos);
                         arrow.runCommandAsync("playsound ambient.weather.thunder @a ~ ~ ~ 1 1");
                         arrow.runCommandAsync("playsound random.explode @a ~ ~ ~ 1 1");
-                    } catch (_) {}
+                    } catch (e) { reportarErro("fire_arrow:alvo", e); }
                 }
-            } catch (_) {}
+            } catch (e) { reportarErro("fire_arrow:arrow", e); }
         }
     }
 }, 2);
@@ -140,9 +151,9 @@ system.runInterval(() => {
                     flashLuz(player.dimension, pos);
                     player.runCommandAsync("playsound ambient.weather.thunder @a ~ ~ ~ 1 1");
                     player.runCommandAsync("playsound random.explode @a ~ ~ ~ 1 1");
-                } catch (_) {}
+                } catch (e) { reportarErro("totem_morte:alvo", e); }
             }
-        } catch (_) {}
+        } catch (e) { reportarErro("totem_morte:player", e); }
     }
 }, 2);
 
