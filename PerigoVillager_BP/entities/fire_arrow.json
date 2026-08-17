@@ -16,8 +16,8 @@
         "gravity": 0.05,
         "hit_sound": "bow.hit",
         "cart_boost": false,
-        "inertia": 0.99,
-        "liquid_inertia": 0.99
+        "inertia": 0.95,
+        "liquid_inertia": 0.8
       },
       "minecraft:physics": {
         "has_gravity": true,

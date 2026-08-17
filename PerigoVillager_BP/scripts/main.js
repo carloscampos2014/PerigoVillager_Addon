@@ -4,6 +4,8 @@ import { world, system, EquipmentSlot, GameMode } from "@minecraft/server";
 const errosReportados = new Set();
 
 function reportarErro(contexto, erro) {
+    // Silencia erros esperados de chunk não carregado
+    if (erro.message && erro.message.includes("not in a chunk currently loaded")) return;
     const chave = `${contexto}:${erro.message}`;
     if (!errosReportados.has(chave)) {
         errosReportados.add(chave);
