@@ -15,6 +15,8 @@ jobs:
     # Para PRs, só executa se o PR foi efetivamente mergeado (não apenas fechado)
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout do repositório
