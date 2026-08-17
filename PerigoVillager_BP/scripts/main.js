@@ -25,14 +25,19 @@ function posicaoRaio(dimension, pos) {
     const cy = Math.floor(pos.y);
     const cz = Math.floor(pos.z);
 
-    // Verifica blocos num raio de 2 horizontalmente e até 4 blocos acima
+    // Verifica blocos num raio de 2 horizontalmente e de 1 a 4 blocos acima
+    // (dy começa em 1 para ignorar o chão onde o mob está de pé)
     for (let dx = -2; dx <= 2; dx++) {
         for (let dz = -2; dz <= 2; dz++) {
-            for (let dy = 0; dy <= 4; dy++) {
-                const bloco = dimension.getBlock({ x: cx + dx, y: cy + dy, z: cz + dz });
-                if (bloco && bloco.typeId !== "minecraft:air") {
-                    // Bloco sólido próximo — raio cai bem acima para não atingir estrutura
-                    return { x: pos.x, y: pos.y + 20, z: pos.z };
+            for (let dy = 1; dy <= 4; dy++) {
+                try {
+                    const bloco = dimension.getBlock({ x: cx + dx, y: cy + dy, z: cz + dz });
+                    if (bloco && bloco.typeId !== "minecraft:air") {
+                        // Bloco sólido próximo — raio cai bem acima para não atingir estrutura
+                        return { x: pos.x, y: pos.y + 20, z: pos.z };
+                    }
+                } catch (_) {
+                    // Chunk não carregado, ignora
                 }
             }
         }
