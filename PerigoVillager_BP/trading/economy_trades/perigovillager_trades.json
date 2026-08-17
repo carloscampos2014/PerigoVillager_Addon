@@ -26,7 +26,8 @@
                                         }
                                     ]
                                 }
-                            ]
+                            ],
+                            "max_uses": 999, "reward_exp": true
                         },
                         {
                             "wants": [{"item": "minecraft:gravel", "quantity": 1}],
@@ -162,7 +163,7 @@
             "total_exp_required": 1,
             "groups": [
                 {
-                    "num_to_select": 13,
+                    "num_to_select": 7,
                     "trades": [
                         {
                             "wants": [{"item": "minecraft:spruce_log", "quantity": 1}],
@@ -259,7 +260,12 @@
                             "wants": [{"item": "minecraft:cobblestone", "quantity": 1}],
                             "gives": [{"item": "minecraft:totem_of_undying", "quantity": 6}],
                             "max_uses": 999, "reward_exp": true
-                        },
+                        }
+                    ]
+                },
+                {
+                    "num_to_select": 6,
+                    "trades": [
                         {
                             "wants": [{"item": "minecraft:andesite", "quantity": 1}],
                             "gives": [
@@ -310,6 +316,29 @@
                                                 {"id": "quick_charge", "level": 3},
                                                 {"id": "multishot", "level": 1},
                                                 {"id": "piercing", "level": 4},
+                                                {"id": "unbreaking", "level": 3},
+                                                {"id": "mending", "level": 1}
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "max_uses": 999, "reward_exp": true
+                        },
+                        {
+                            "wants": [{"item": "minecraft:bone", "quantity": 1}],
+                            "gives": [
+                                {
+                                    "item": "calca14:fire_bow",
+                                    "quantity": 1,
+                                    "functions": [
+                                        {
+                                            "function": "specific_enchants",
+                                            "enchants": [
+                                                {"id": "power", "level": 5},
+                                                {"id": "punch", "level": 2},
+                                                {"id": "flame", "level": 1},
+                                                {"id": "infinity", "level": 1},
                                                 {"id": "unbreaking", "level": 3},
                                                 {"id": "mending", "level": 1}
                                             ]
