@@ -57,13 +57,12 @@ system.runInterval(() => {
                 const pos = alvosMorte.location;
                 alvosMorte.kill();
                 
-                // Visual de raio + flash de luz
-                arrow.dimension.spawnParticle("minecraft:lightning_recharge_station_particles", pos);
+                // Raio acima do mob para não queimar os drops no chão
+                const posRaio = { x: pos.x, y: pos.y + 2, z: pos.z };
+                arrow.dimension.spawnEntity("minecraft:lightning_bolt", posRaio);
                 arrow.dimension.spawnParticle("minecraft:huge_explosion_emitter", pos);
                 arrow.dimension.spawnParticle("minecraft:electric_spark_particle", pos);
-                arrow.dimension.spawnParticle("minecraft:totem_particle", pos);
                 flashLuz(arrow.dimension, pos);
-                // Som tocado a partir da posição da flecha (tem executador válido)
                 arrow.runCommandAsync("playsound ambient.weather.thunder @a ~ ~ ~ 1 1");
                 arrow.runCommandAsync("playsound random.explode @a ~ ~ ~ 1 1");
             }
@@ -102,13 +101,12 @@ system.runInterval(() => {
             const pos = alvo.location;
             alvo.kill();
 
-            // Visual de raio + flash de luz
-            player.dimension.spawnParticle("minecraft:lightning_recharge_station_particles", pos);
+            // Raio acima do mob para não queimar os drops no chão
+            const posRaio = { x: pos.x, y: pos.y + 2, z: pos.z };
+            player.dimension.spawnEntity("minecraft:lightning_bolt", posRaio);
             player.dimension.spawnParticle("minecraft:huge_explosion_emitter", pos);
             player.dimension.spawnParticle("minecraft:electric_spark_particle", pos);
-            player.dimension.spawnParticle("minecraft:totem_particle", pos);
             flashLuz(player.dimension, pos);
-            // Som tocado a partir do jogador (tem executador válido)
             player.runCommandAsync("playsound ambient.weather.thunder @a ~ ~ ~ 1 1");
             player.runCommandAsync("playsound random.explode @a ~ ~ ~ 1 1");
         }
