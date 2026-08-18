@@ -37,7 +37,16 @@
             "minecraft:behavior.restrict_open_door": {},
             "minecraft:physics": {},
             "minecraft:pushable": { "is_pushable": true, "is_pushable_by_piston": true},
-            "minecraft:inventory": { "inventory_size": 64, "container_type": "inventory" }
+            "minecraft:inventory": { "inventory_size": 64, "container_type": "inventory" },
+            "minecraft:spell_effects": {
+                "add_effects": [
+                    { "effect": "resistance", "duration": 999999, "amplifier": 255, "visible": false, "display_on_screen_animation": false },
+                    { "effect": "regeneration", "duration": 999999, "amplifier": 255, "visible": false, "display_on_screen_animation": false },
+                    { "effect": "absorption", "duration": 999999, "amplifier": 255, "visible": false, "display_on_screen_animation": false },
+                    { "effect": "fire_resistance", "duration": 999999, "amplifier": 255, "visible": false, "display_on_screen_animation": false },
+                    { "effect": "water_breathing", "duration": 999999, "amplifier": 255, "visible": false, "display_on_screen_animation": false }
+                ]
+            }
         }
     }
 }
