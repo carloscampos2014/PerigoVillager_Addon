@@ -31,7 +31,10 @@
                 "max_dist": 6
             },
             "minecraft:behavior.look_at_player": { "priority": 8, "look_distance": 8 },
-            "minecraft:behavior.random_stroll": { "priority": 9 },
+            "minecraft:behavior.random_stroll": { "priority": 9, "speed_multiplier": 0.6, "xz_dist": 5, "y_dist": 1 },
+            "minecraft:home": { "home_block_list": [] },
+            "minecraft:behavior.move_towards_home": { "priority": 6, "speed_multiplier": 0.6, "interval": 60 },
+            "minecraft:behavior.restrict_open_door": {},
             "minecraft:physics": {},
             "minecraft:pushable": { "is_pushable": true, "is_pushable_by_piston": true},
             "minecraft:inventory": { "inventory_size": 64, "container_type": "inventory" }
