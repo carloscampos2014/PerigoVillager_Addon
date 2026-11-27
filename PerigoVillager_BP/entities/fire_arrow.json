@@ -17,7 +17,11 @@
         "hit_sound": "bow.hit",
         "cart_boost": false,
         "inertia": 0.95,
-        "liquid_inertia": 0.8
+        "liquid_inertia": 0.8,
+        "destroy_on_hurt": true,
+        "on_hit": {
+          "remove_on_hit": {}
+        }
       },
       "minecraft:physics": {
         "has_gravity": true,

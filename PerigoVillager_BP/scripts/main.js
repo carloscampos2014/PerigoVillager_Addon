@@ -63,6 +63,23 @@ function posicaoRaio(dimension, pos) {
 // ==========================================
 // 1. RASTRO E SUPER ATAQUE AUTOMÁTICO (Liberado na Água)
 // ==========================================
+// Remove a flecha imediatamente quando colide com qualquer bloco ou entidade
+world.afterEvents.projectileHitBlock.subscribe((event) => {
+    if (event.projectile && event.projectile.typeId === "calca14:fire_arrow") {
+        try {
+            event.projectile.remove();
+        } catch (e) {}
+    }
+});
+
+world.afterEvents.projectileHitEntity.subscribe((event) => {
+    if (event.projectile && event.projectile.typeId === "calca14:fire_arrow") {
+        try {
+            event.projectile.remove();
+        } catch (e) {}
+    }
+});
+
 system.runInterval(() => {
     const dimensions = ["overworld", "nether", "the_end"];
     for (const dim of dimensions) {
@@ -70,10 +87,12 @@ system.runInterval(() => {
         
         for (const arrow of arrows) {
             try {
+                if (!arrow.isValid()) continue;
                 if (arrow.location.y >= 320 || arrow.location.y <= -64) continue;
 
                 const vel = arrow.getVelocity();
                 if (Math.abs(vel.x) < 0.05 && Math.abs(vel.y) < 0.05 && Math.abs(vel.z) < 0.05) {
+                    try { arrow.remove(); } catch (e) {}
                     continue;     
                 }
 
@@ -117,7 +136,7 @@ system.runInterval(() => {
 }, 2);
 
 // ==========================================
-// 2. TOTEM DA MORTE (Offhand — raio 15 blocos)
+// 2. TOTEM DA MORTE (Mão principal ou Offhand — raio 15 blocos)
 // ==========================================
 system.runInterval(() => {
     for (const player of world.getPlayers()) {
@@ -125,8 +144,12 @@ system.runInterval(() => {
             const equipment = player.getComponent("minecraft:equippable");
             if (!equipment) continue;
 
+            const mainhandItem = equipment.getEquipment(EquipmentSlot.Mainhand);
             const offhandItem = equipment.getEquipment(EquipmentSlot.Offhand);
-            if (!offhandItem || offhandItem.typeId !== "calca14:totem_morte") continue;
+            const temTotem = (mainhandItem && mainhandItem.typeId === "calca14:totem_morte") ||
+                             (offhandItem && offhandItem.typeId === "calca14:totem_morte");
+
+            if (!temTotem) continue;
 
             if (player.location.y >= 320 || player.location.y <= -64) continue;
 
@@ -195,7 +218,10 @@ world.afterEvents.itemCompleteUse.subscribe((event) => {
 
         player.addTag("superman_ativo");
         
-        player.sendMessage("§e§lVocê ganhou os poderes do Superman, infelizmente só não dá para fazer voar!");
+        // Habilita habilidade de voo no modo Survival/Adventure
+        player.runCommandAsync("ability @s mayfly true");
+        
+        player.sendMessage("§e§lVocê ganhou os poderes do Superman! Dê dois toques no pulo para voar!");
     }
 });
 
@@ -208,9 +234,10 @@ system.runInterval(() => {
     for (const p of superJogadores) {
         const temResistencia = p.getEffect("minecraft:resistance");
 
-        // Se a poção acabar, limpa a tag
+        // Se a poção acabar, limpa a tag e desliga o voo se não estiver no criativo
         if (!temResistencia) {
             p.removeTag("superman_ativo");
+            p.runCommandAsync("ability @s mayfly false");
             p.sendMessage("§c§lSeus poderes se esgotaram!");
             continue;
         }

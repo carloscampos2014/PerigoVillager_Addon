@@ -1,0 +1,25 @@
+[2026-11-25T23:59:00] [PREFLIGHT] attempt 1/3: probe failed with code 1
+AppData\Local\uv\cache\archive-v0\fksujw7FHEcIBi1X\Lib\site-packages\chromadb\api\client.py", line 69, in __init__
+    super().__init__(settings=settings)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\enzoj\AppData\Local\uv\cache\archive-v0\fksujw7FHEcIBi1X\Lib\site-packages\chromadb\api\shared_system_client.py", line 25, in __init__
+    SharedSystemClient._create_system_if_not_exists(self._identifier, settings)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\enzoj\AppData\Local\uv\cache\archive-v0\fksujw7FHEcIBi1X\Lib\site-packages\chromadb\api\shared_system_client.py", line 39, in _create_system_if_not_exists
+    new_system.start()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\enzoj\AppData\Local\uv\cache\archive-v0\fksujw7FHEcIBi1X\Lib\site-packages\chromadb\config.py", line 467, in start
+    component.start()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\enzoj\AppData\Local\uv\cache\archive-v0\fksujw7FHEcIBi1X\Lib\site-packages\chromadb\api\rust.py", line 122, in start
+    self.bindings = chromadb_rust_bindings.Bindings(
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        allow_reset=self._system.settings.require("allow_reset"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        hnsw_cache_size=self.hnsw_cache_size,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+chromadb.errors.InternalError: error returned from database: (code: 1) table collections already exists
+[2026-11-25T23:59:09] [PREFLIGHT] attempt 2: OK (recovered from transient failure)
