@@ -1,0 +1,26 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "calca14:ancora_retorno_recipe"
+    },
+    "tags": ["crafting_table"],
+    "pattern": [
+      "CCC",
+      "CTC",
+      "CCC"
+    ],
+    "key": {
+      "C": {
+        "item": "minecraft:cobblestone"
+      },
+      "T": {
+        "item": "minecraft:torch"
+      }
+    },
+    "result": {
+      "item": "calca14:ancora_retorno",
+      "count": 1
+    }
+  }
+}

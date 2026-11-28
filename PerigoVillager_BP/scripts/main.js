@@ -218,15 +218,15 @@ world.afterEvents.itemCompleteUse.subscribe((event) => {
 
         player.addTag("superman_ativo");
         
-        // Habilita habilidade de voo no modo Survival/Adventure
+        // Habilita voo se Education Edition estiver ativo
         player.runCommandAsync("ability @s mayfly true");
         
-        player.sendMessage("§e§lVocê ganhou os poderes do Superman! Dê dois toques no pulo para voar!");
+        player.sendMessage("§e§lVocê ganhou os poderes do Superman! Ao planar com a Élitro (Elytra), você tem propulsão infinita e voa como um foguete!");
     }
 });
 
 // ==========================================
-// 4. VIGILÂNCIA DE PODERES E CONTADOR DO SUPERMAN
+// 4. VIGILÂNCIA DE PODERES, VOO CONTROLADO COM ÉLITRO E CONTADOR DO SUPERMAN
 // ==========================================
 system.runInterval(() => {
     const superJogadores = world.getPlayers({ tags: ["superman_ativo"] });
@@ -242,6 +242,38 @@ system.runInterval(() => {
             continue;
         }
 
+        // VOO DO SUPERMAN COM ÉLITRO (Controlado e Suave)
+        try {
+            if (p.isGliding) {
+                const vel = p.getVelocity();
+                const velAtual = Math.sqrt(vel.x * vel.x + vel.y * vel.y + vel.z * vel.z);
+                const view = p.getViewDirection();
+
+                // 1. Limite de Altitude (teto seguro em Y=320 para não sumir no espaço)
+                if (p.location.y > 320 && view.y > 0) {
+                    // Impede subir além de Y=320, forçando voo horizontal
+                    view.y = 0;
+                }
+
+                // 2. Velocidade controlada: só acelera se a velocidade estiver abaixo do limite (1.35)
+                // Isso evita que o impulso acumule e dispare sem controle
+                if (velAtual < 1.35) {
+                    const forca = Math.max(0.08, 0.28 * (1 - (velAtual / 1.35)));
+                    p.applyImpulse({
+                        x: view.x * forca,
+                        y: view.y * forca,
+                        z: view.z * forca
+                    });
+                }
+
+                // Efeito sonoro discreto e partículas suaves apenas a cada 10 ticks (0.5s)
+                if (system.currentTick % 10 === 0) {
+                    p.runCommandAsync("particle minecraft:sonic_explosion ~ ~ ~");
+                    p.runCommandAsync("playsound firework.blast @s ~ ~ ~ 0.2 1.3");
+                }
+            }
+        } catch (e) { reportarErro("superman:elytra_fly", e); }
+
         // Exibe contador de tempo restante no actionbar
         const ticksRestantes = temResistencia.duration;
         const totalSegundos = Math.ceil(ticksRestantes / 20);
@@ -256,3 +288,49 @@ system.runInterval(() => {
         p.onScreenDisplay.setActionBar(`§e§lSuperman §r§7| §fPoderes: §a${tempoStr}`);
     }
 }, 10);
+
+// ==========================================
+// 5. SISTEMA DE ÂNCORA E AMULETO DE RETORNO
+// ==========================================
+// Salva a posição exata quando o jogador coloca o bloco Âncora de Retorno
+world.afterEvents.playerPlaceBlock.subscribe((event) => {
+    const { player, block } = event;
+    if (block.typeId === "calca14:ancora_retorno") {
+        const posData = JSON.stringify({
+            x: Math.floor(block.location.x) + 0.5,
+            y: Math.floor(block.location.y) + 1.0,
+            z: Math.floor(block.location.z) + 0.5,
+            dim: block.dimension.id
+        });
+        player.setDynamicProperty("ancora_retorno_pos", posData);
+        player.sendMessage(`§b§l[Âncora] §fPonto de retorno salvo em (${Math.floor(block.location.x)}, ${Math.floor(block.location.y)}, ${Math.floor(block.location.z)})!`);
+        player.runCommandAsync("playsound block.respawn_anchor.charge @s ~ ~ ~ 1 1.2");
+    }
+});
+
+// Teleporta para a âncora quando o jogador usa o Amuleto de Retorno
+world.afterEvents.itemUse.subscribe((event) => {
+    const { source: player, itemStack } = event;
+    if (player.typeId !== "minecraft:player") return;
+    if (itemStack.typeId !== "calca14:amuleto_retorno") return;
+
+    const posStr = player.getDynamicProperty("ancora_retorno_pos");
+    if (!posStr) {
+        player.sendMessage("§c§l[Âncora] §fVocê ainda não colocou nenhuma Âncora de Retorno no mundo!");
+        return;
+    }
+
+    try {
+        const destino = JSON.parse(posStr);
+        const targetDim = world.getDimension(destino.dim);
+        player.runCommandAsync("playsound mob.endermen.portal @s ~ ~ ~ 1 1");
+        player.teleport(
+            { x: destino.x, y: destino.y, z: destino.z },
+            { dimension: targetDim }
+        );
+        player.sendMessage("§b§l[Âncora] §aTeleportado de volta para sua Âncora!");
+        targetDim.spawnParticle("minecraft:portal_reverse_particle", { x: destino.x, y: destino.y, z: destino.z });
+    } catch (e) {
+        reportarErro("amuleto_retorno", e);
+    }
+});

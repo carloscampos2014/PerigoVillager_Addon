@@ -16,6 +16,9 @@
     },
     "fire_crossbow": {
       "textures": "textures/items/crossbow_standby"
+    },
+    "amuleto_retorno": {
+      "textures": "textures/items/ender_eye"
     }
   }
 }

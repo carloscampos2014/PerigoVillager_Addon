@@ -1,0 +1,26 @@
+{
+  "format_version": "1.20.10",
+  "minecraft:recipe_shaped": {
+    "description": {
+      "identifier": "calca14:totem_morte_recipe"
+    },
+    "tags": ["crafting_table"],
+    "pattern": [
+      " O ",
+      "OTO",
+      " O "
+    ],
+    "key": {
+      "O": {
+        "item": "minecraft:gold_ingot"
+      },
+      "T": {
+        "item": "minecraft:totem_of_undying"
+      }
+    },
+    "result": {
+      "item": "calca14:totem_morte",
+      "count": 1
+    }
+  }
+}
